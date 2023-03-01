@@ -20,19 +20,14 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = "9.0"
 
-  s.source = {:git => "https://github.com/lokalise/lokalise-ios-framework.git", :tag => s.version}
+  s.source = { :git => "https://github.com/lokalise/lokalise-ios-framework.git", :tag => s.version }
 
-  s.ios.vendored_frameworks = "Lokalise.framework"
+  s.vendored_frameworks = "Lokalise.xcframework"
+  s.preserve_paths =  'Lokalise.xcframework/*'
 
   s.frameworks   = 'Foundation'
   s.libraries    = 'c++', 'z'
 
-  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(inherited)" }
-
-  s.pod_target_xcconfig = {
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-  }
-
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Lokalise/"' }
 
 end
